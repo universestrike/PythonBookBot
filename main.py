@@ -1,3 +1,4 @@
+import sys
 from stats import get_word_count
 from stats import get_char_count
 
@@ -15,7 +16,10 @@ def pretty_print(filepath, words, chars):
         print(f"{char}: {chars[char]}")
 
 def main():
-    filepath = 'books/frankenstein.txt'
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    filepath = sys.argv[1]
     text = get_book_text(filepath)
     words = get_word_count(text)
     chars = get_char_count(text)
